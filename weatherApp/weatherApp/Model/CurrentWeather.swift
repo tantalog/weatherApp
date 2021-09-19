@@ -29,29 +29,25 @@ struct Main: Codable {
 
     enum CodingKeys: String, CodingKey {
         case temp
-        case feelsLike
-        case tempMin
-        case tempMax
+        case feelsLike = "feels_like"
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
         case pressure, humidity
     }
 }
 
 struct Sys: Codable {
-    let type, id: Int
-    let message: Double
+    let type, id: Int?
+    let message: Double?
     let country: String
     let sunrise, sunset: Int
 }
 
 struct Weather: Codable {
     let id: Int
-    let main, weatherDescription, icon: String
-
-    enum CodingKeys: String, CodingKey {
-        case id, main
-        case weatherDescription
-        case icon
-    }
+    let main: String
+    let description: String
+    let icon: String
 }
 
 struct Wind: Codable {

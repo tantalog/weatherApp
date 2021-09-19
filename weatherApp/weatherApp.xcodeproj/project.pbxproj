@@ -17,6 +17,13 @@
 		4F3BBE8A26F624C5004F04C1 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8926F624C5004F04C1 /* CurrentWeather.swift */; };
 		4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */; };
 		4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */; };
+		4F3BBE9026F68DDA004F04C1 /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8F26F68DDA004F04C1 /* CurrentWeatherViewModel.swift */; };
+		4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9226F68FBE004F04C1 /* Bindable.swift */; };
+		4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */; };
+		4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9A26F75E46004F04C1 /* Extensions.swift */; };
+		4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */; };
+		4F3BBEA026F780F6004F04C1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */; };
+		4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA126F78193004F04C1 /* Fonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		4F3BBE8926F624C5004F04C1 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		4F3BBE8F26F68DDA004F04C1 /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
+		4F3BBE9226F68FBE004F04C1 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStyleLabel.swift; sourceTree = "<group>"; };
+		4F3BBE9A26F75E46004F04C1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		4F3BBEA126F78193004F04C1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +78,12 @@
 		4F3BBE6926F5F6E3004F04C1 /* weatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				4F3BBE9926F75E35004F04C1 /* Helpers */,
+				4F3BBE9126F68FA3004F04C1 /* ViewModel */,
 				4F3BBE8226F62244004F04C1 /* Networking */,
 				4F3BBE8126F621AC004F04C1 /* Model */,
 				4F3BBE8026F62178004F04C1 /* View Controllers */,
+				4F3BBE9426F6A716004F04C1 /* Views */,
 				4F3BBE7F26F62155004F04C1 /* Resources */,
 				4F3BBE7E26F62114004F04C1 /* Supporting Files */,
 				4F3BBE7826F5F6E5004F04C1 /* Info.plist */,
@@ -86,6 +103,7 @@
 		4F3BBE7F26F62155004F04C1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F3BBE9E26F77F25004F04C1 /* Fonts */,
 				4F3BBE7326F5F6E5004F04C1 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -97,6 +115,7 @@
 				4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */,
 				4F3BBE6E26F5F6E3004F04C1 /* CurrentWeatherViewController.swift */,
 				4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */,
+				4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -117,6 +136,40 @@
 				4F3BBE8726F62434004F04C1 /* NetworkingService.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		4F3BBE9126F68FA3004F04C1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE8F26F68DDA004F04C1 /* CurrentWeatherViewModel.swift */,
+				4F3BBE9226F68FBE004F04C1 /* Bindable.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4F3BBE9426F6A716004F04C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4F3BBE9926F75E35004F04C1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE9A26F75E46004F04C1 /* Extensions.swift */,
+				4F3BBEA126F78193004F04C1 /* Fonts.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4F3BBE9E26F77F25004F04C1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3BBEA026F780F6004F04C1 /* Poppins-Regular.ttf in Resources */,
 				4F3BBE7726F5F6E5004F04C1 /* LaunchScreen.storyboard in Resources */,
 				4F3BBE7426F5F6E5004F04C1 /* Assets.xcassets in Resources */,
 			);
@@ -188,12 +242,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */,
+				4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */,
 				4F3BBE8826F62434004F04C1 /* NetworkingService.swift in Sources */,
 				4F3BBE8626F622A5004F04C1 /* Parser.swift in Sources */,
+				4F3BBE9026F68DDA004F04C1 /* CurrentWeatherViewModel.swift in Sources */,
 				4F3BBE6F26F5F6E3004F04C1 /* CurrentWeatherViewController.swift in Sources */,
 				4F3BBE6B26F5F6E3004F04C1 /* AppDelegate.swift in Sources */,
 				4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */,
+				4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */,
+				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,
+				4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */,
 				4F3BBE8A26F624C5004F04C1 /* CurrentWeather.swift in Sources */,
 				4F3BBE8426F6226F004F04C1 /* ImageDownloadOperation.swift in Sources */,
 			);

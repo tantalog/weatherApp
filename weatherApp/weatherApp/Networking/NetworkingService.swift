@@ -12,8 +12,8 @@ class NetworkingService {
         self.operations = [String: [Operation]]()
     }
     
-    func loadRockets(complition:@escaping ([CurrentWeather]?, Error?)->()) {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q={minsk}&appid={98bbf81fe08173c6a80a9db6cf363ee6}") else {return}
+    func loadWeather(latitude: String, longitude: String, complition:@escaping (CurrentWeather?, Error?)->()) {
+        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=f0cfe7251fba12244ee19e5184cf7eb5") else {return}
         var request: URLRequest = URLRequest(url: url)
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
