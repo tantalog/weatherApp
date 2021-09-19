@@ -2,16 +2,26 @@ import UIKit
 
 class CurrentWeatherViewController: UIViewController {
     
+    var icon = UIImageView()
     var cityLabel = ProjectStyleLabel()
     var tempLabel = ProjectStyleLabel()
     var descriptionLabel = ProjectStyleLabel()
+    var humidityLabel = ProjectStyleLabel()
+    var humidityIcon =   makeIconImageView(systemName: IconNames.humidity.rawValue)
+    var pressureLabel = ProjectStyleLabel()
+    var pressureIcon = makeIconImageView(systemName: IconNames.pressure.rawValue)
+    var windSpeedLabel = ProjectStyleLabel()
+    var windSpeedIcon = makeIconImageView(systemName: IconNames.windSpeed.rawValue)
+    var windDirectionLabel = ProjectStyleLabel()
+    var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
+    
+    var shareButton = UIButton()
+    
     
     
     
     var weather: CurrentWeather?
-    var icon = UIImageView()
-    var titleLabel = ProjectStyleLabel(text: "Today", fontSize: 24)
-    
+
     
     private var viewModel = ViewModel()
     
@@ -22,26 +32,23 @@ class CurrentWeatherViewController: UIViewController {
         view.backgroundColor = UIColor.ProjectColors.background
         viewModel.configLocation()
         viewModel.startLoading()
-//                setUpViews()
+                setUpViews()
         configireUI()
     }
     
     func setUpViews() {
-        view.addSubview(titleLabel)
-        NSLayoutConstraint .activate([titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                      titleLabel.widthAnchor.constraint(equalToConstant: 140),
-                                      titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-                                      titleLabel.heightAnchor.constraint(equalToConstant: 28)])
-        titleLabel.textAlignment = .center
-        
-        let verticalStackView = setVerticalStackView(views: [icon, titleLabel,cityLabel, tempLabel, descriptionLabel])
+
+        let verticalStackView = setVerticalStackView(views: [humidityIcon ,pressureIcon, windSpeedIcon, windSpeedLabel])
         view.addSubview(verticalStackView)
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([verticalStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
+        NSLayoutConstraint.activate([verticalStackView.topAnchor.constraint(equalTo: view.topAnchor),
                                      verticalStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                                      verticalStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      verticalStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)])
+        verticalStackView.backgroundColor = .brown
     }
+    
+
     
     func configireUI() {
         if let icon = viewModel.icon {

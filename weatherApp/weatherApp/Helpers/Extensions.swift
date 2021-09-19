@@ -42,3 +42,14 @@ extension UINavigationController {
     
 }
 
+extension UIViewController {
+    static func makeIconImageView(systemName: String) -> UIImageView {
+        let config = UIImage.SymbolConfiguration(font: AppFont.font(type: .poppinsRegular, size: 14))
+        let iconImage = UIImage(systemName: systemName, withConfiguration: config)
+        iconImage?.withTintColor(.systemBlue)
+        let iconView = UIImageView(image: iconImage)
+        return iconView
+    }
+    
+}
+

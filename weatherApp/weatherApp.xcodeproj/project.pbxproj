@@ -24,6 +24,8 @@
 		4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */; };
 		4F3BBEA026F780F6004F04C1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */; };
 		4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA126F78193004F04C1 /* Fonts.swift */; };
+		4F3BBEA426F7DD60004F04C1 /* IconImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA326F7DD60004F04C1 /* IconImageView.swift */; };
+		4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4F3BBEA126F78193004F04C1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		4F3BBEA326F7DD60004F04C1 /* IconImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImageView.swift; sourceTree = "<group>"; };
+		4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */,
+				4F3BBEA326F7DD60004F04C1 /* IconImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			children = (
 				4F3BBE9A26F75E46004F04C1 /* Extensions.swift */,
 				4F3BBEA126F78193004F04C1 /* Fonts.swift */,
+				4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -249,10 +255,12 @@
 				4F3BBE9026F68DDA004F04C1 /* CurrentWeatherViewModel.swift in Sources */,
 				4F3BBE6F26F5F6E3004F04C1 /* CurrentWeatherViewController.swift in Sources */,
 				4F3BBE6B26F5F6E3004F04C1 /* AppDelegate.swift in Sources */,
+				4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */,
 				4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */,
 				4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */,
 				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,
+				4F3BBEA426F7DD60004F04C1 /* IconImageView.swift in Sources */,
 				4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */,
 				4F3BBE8A26F624C5004F04C1 /* CurrentWeather.swift in Sources */,
 				4F3BBE8426F6226F004F04C1 /* ImageDownloadOperation.swift in Sources */,
