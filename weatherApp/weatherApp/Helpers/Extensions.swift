@@ -3,22 +3,22 @@ import UIKit
 
 extension UIViewController {
     
-    func setVerticalStackView(views: [UIView], spacing: CGFloat = 15) -> UIStackView {
+    func setVerticalStackView(views: [UIView], spacing: CGFloat = 5, alignment: UIStackView.Alignment = .center ) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         stackView.spacing = spacing
-        
+        stackView.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         return stackView
     }
     
-    func setHorizontalStackView(views: [UIView]) -> UIStackView {
+    func setHorizontalStackView(views: [UIView], spacing: CGFloat = 150) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = .horizontal
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.alignment = .center
-        stackView.spacing = 30
+        stackView.spacing = spacing
         return stackView
     }
 }
@@ -35,6 +35,7 @@ extension UIColor {
 }
 
 extension UINavigationController {
+    var image: UIImage?  {UIImage(named: "modeButtonImage")}
     func makeBarButtonItem(image: UIImage = UIImage(named: "modeButtonImage")!, target: Any?, action: Selector?) -> UIBarButtonItem {
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target : target, action: action)
         return barButtonItem
@@ -44,7 +45,7 @@ extension UINavigationController {
 
 extension UIViewController {
     static func makeIconImageView(systemName: String) -> UIImageView {
-        let config = UIImage.SymbolConfiguration(font: AppFont.font(type: .poppinsRegular, size: 14))
+        let config = UIImage.SymbolConfiguration(font: AppFont.font(type: .poppinsRegular, size: 25))
         let iconImage = UIImage(systemName: systemName, withConfiguration: config)
         iconImage?.withTintColor(.systemBlue)
         let iconView = UIImageView(image: iconImage)
