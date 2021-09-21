@@ -17,6 +17,12 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     var windSpeed: Bindable<String> = Bindable("")
     var windDirection: Bindable<String> = Bindable("")
     
+    var days: Bindable<[String]> = Bindable([String]())
+    var icons: Bindable<[UIImage]> = Bindable([UIImage]())
+    var timestamps: Bindable<[String]> = Bindable([String]())
+    var descriptions: Bindable<[String]> = Bindable([String]())
+    var temps: Bindable<[String]> = Bindable([String]())
+    
     var alert: UIAlertController?
     private var locationManager = CLLocationManager()
     private var coordinate: CLLocationCoordinate2D?
@@ -40,7 +46,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
         let parser = Parser()
         let networkingService = NetworkingService(with: parser)
         networkingService.loadForecast (latitude: latitude, longitude: longitude) { (forecastData, error) in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 if let error = error {
                     let alert = UIAlertController(title: "Alert",
                                                   message: "\(error)",
@@ -72,8 +78,42 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                             }
                         }
                     }
+                    var daysArray = [String]()
+                    for timestampForecast in forecastData.list {
+                        if let dayOfTheWeek = getDayOfWeek(date: timestampForecast.dtTxt) {
+                            daysArray.append(dayOfTheWeek)
+                        }
+                        self.timestamps.value.append(timestampForecast.dtTxt)
+                        self.temps.value.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
+                        if let timestampWeather = timestampForecast.weather.first {
+                            self.descriptions.value.append(timestampWeather.weatherDescription)
+                            networkingService.loadImageForURL(url: ("http://openweathermap.org/img/wn/" + timestampWeather.icon + "@2x.png"))  { (image) in
+                                DispatchQueue.main.async {
+                                    self.icons.value.append(image)
+                                }
+                            }
+                        }
+                    }
+                    var  unique = daysArray.removingDuplicates()
+                    unique.remove(at: 0)
+                    unique.insert("Today", at: 0)
+                    self.days.value = unique
                 }
             }
         }
     }
+    
+    
+    func getDayOfWeek(date: String) -> String? {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateDate = dateFormatterGet.date(from: date)
+        let dateFormatterReturn = DateFormatter()
+        dateFormatterReturn.dateFormat = "EEEE"
+        if let dateDate = dateDate {
+        return dateFormatterReturn.string(from: dateDate)
+        }
+        return nil
+    }
+    
 }

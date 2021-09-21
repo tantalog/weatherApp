@@ -53,15 +53,6 @@ struct Main: Codable {
 }
 
 
-//struct Rain: Codable {
-//    let the3H: Double
-//
-//    enum CodingKeys: String, CodingKey {
-//        case the3H = "3h"
-//    }
-//}
-
-
 struct Sys: Codable {
     let pod: String
 }
