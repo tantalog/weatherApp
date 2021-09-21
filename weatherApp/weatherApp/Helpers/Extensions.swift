@@ -35,9 +35,14 @@ extension UIColor {
 }
 
 extension UINavigationController {
-    var image: UIImage?  {UIImage(named: "modeButtonImage")}
     func makeBarButtonItem(image: UIImage = UIImage(named: "modeButtonImage")!, target: Any?, action: Selector?) -> UIBarButtonItem {
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target : target, action: action)
+        let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
+                //set image for button
+        button.setImage(image, for: .normal)
+                //add function for button
+        button.addTarget(target, action: action!, for: .touchUpInside)
+                //set frame
+        let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }
     
