@@ -13,10 +13,10 @@ extension UIViewController {
         return stackView
     }
     
-    func setHorizontalStackView(views: [UIView], spacing: CGFloat = 150) -> UIStackView {
+    func setHorizontalStackView(views: [UIView], spacing: CGFloat = 100, distribution: UIStackView.Distribution = .fillEqually) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = distribution
         stackView.alignment = .center
         stackView.spacing = spacing
         return stackView

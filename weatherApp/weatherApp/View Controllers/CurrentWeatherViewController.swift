@@ -3,13 +3,7 @@ import UIKit
 class CurrentWeatherViewController: UIViewController {
     
     let mainScrollView: UIScrollView = {UIScrollView()}()
-    var icon:  UIImageView
-    {
-        let imageView = UIImageView(image: UIImage(named: "mockWeatherIcon"))
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }
+    var conditionIcon = UIImageView()
     var cityLabel = ProjectStyleLabel(text: "Minsk, BY")
     var tempLabel = ProjectStyleLabel(text: "28\u{00B0}C", fontSize: 48)
     var descriptionLabel = ProjectStyleLabel(text:"light intensity drizzle", textColor: UIColor.ProjectColors.descriptionText)
@@ -26,7 +20,7 @@ class CurrentWeatherViewController: UIViewController {
     
     var shareButton = UIButton()
     var weather: CurrentWeather?
-
+    
     private var viewModel = ViewModel()
     
     override func viewDidLoad() {
@@ -43,11 +37,18 @@ class CurrentWeatherViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
+        
         
     }
     
     func setUpViews() {
+        
+        
+        conditionIcon = UIImageView(image: UIImage(named: "mockWeatherIcon"))
+        conditionIcon.contentMode = .scaleAspectFill
+        conditionIcon.clipsToBounds = true
+        
+        
         view.addSubview(mainScrollView)
         
         mainScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +69,8 @@ class CurrentWeatherViewController: UIViewController {
         let windDirectionStackView = setVerticalStackView(views: [windDirectionIcon, windDirectionLabel])
         let secondRowStackView = setHorizontalStackView(views: [windSpeedStackView, windDirectionStackView])
         let dataStackView = setVerticalStackView(views: [firstRowStackView, secondRowStackView], spacing: 20, alignment: .firstBaseline)
-
-        let verticalStackView = setVerticalStackView(views: [icon, centralStackView, dataStackView], spacing: 50)
+        
+        let verticalStackView = setVerticalStackView(views: [conditionIcon, centralStackView, dataStackView], spacing: 50)
         mainScrollView.addSubview(verticalStackView)
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.topAnchor.constraint(equalTo: mainScrollView.topAnchor, constant: 10).isActive = true
@@ -93,22 +94,18 @@ class CurrentWeatherViewController: UIViewController {
         shareButton.titleLabel?.backgroundColor = .none
     }
     
-
+    
     
     func configireUI() {
-        if let icon = viewModel.icon {
-            icon.bind { (image) in
-                self.icon.image = image
-            }
-        }
-        
-        if let weather = viewModel.currentWeather {
-            weather.bind { (image) in
-                self.cityLabel.text = weather.value.name
-                self.tempLabel.text = String(weather.value.main.temp)
-            }
-        }
-            
+        self.viewModel.icon.bind { (image) in self.conditionIcon.image = image }
+        self.viewModel.city.bind { (text) in self.cityLabel.text = text }
+        self.viewModel.temp.bind { (text) in self.tempLabel.text = text }
+        self.viewModel.weatherDescription.bind { (text) in self.descriptionLabel.text = text }
+        self.viewModel.humidity.bind { (text) in self.humidityLabel.text = text }
+        self.viewModel.visibility.bind { (text) in self.visibilityLabel.text = text }
+        self.viewModel.pressure.bind { (text) in self.pressureLabel.text = text }
+        self.viewModel.windSpeed.bind { (text) in self.windSpeedLabel.text = text }
+        self.viewModel.windDirection.bind { (text) in self.windDirectionLabel.text = text }
     }
     
     @objc func appearanceButtonTapped() {
@@ -123,5 +120,5 @@ class CurrentWeatherViewController: UIViewController {
             self.tabBarController?.overrideUserInterfaceStyle = .dark
         }
     }
-      
+    
 }
