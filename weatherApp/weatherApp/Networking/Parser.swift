@@ -2,8 +2,13 @@ import Foundation
 
 class Parser {
     
-    func parseWeather(_ data: Data, complition:  @escaping (CurrentWeather?, Error?) -> ()  ) {
-        let weather = try! JSONDecoder().decode(CurrentWeather.self, from: data) as CurrentWeather
-        complition(weather,nil)
+    func parseForecast(_ data: Data, complition:  @escaping (Forecast?, Error?) -> ()  ) {
+        let forecast = try! JSONDecoder().decode(Forecast.self, from: data) as Forecast
+        complition(forecast,nil)
+    }
+    
+    func parseCity(_ data: Data, complition:  @escaping (City?, Error?) -> ()  ) {
+        let city = try! JSONDecoder().decode(City.self, from: data) as City
+        complition(city,nil)
     }
 }

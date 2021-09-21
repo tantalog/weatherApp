@@ -7,10 +7,10 @@ class CurrentWeatherViewController: UIViewController {
     var cityLabel = ProjectStyleLabel(text: "Minsk, BY")
     var tempLabel = ProjectStyleLabel(text: "28\u{00B0}C", fontSize: 48)
     var descriptionLabel = ProjectStyleLabel(text:"light intensity drizzle", textColor: UIColor.ProjectColors.descriptionText)
-    var humidityLabel = ProjectStyleLabel(text: "95%")
+    var probabilityOfPrecipitationLabel = ProjectStyleLabel(text: "95%")
+    var probabilityOfPrecipitationIcon =   makeIconImageView(systemName: IconNames.pop.rawValue)
+    var humidityLabel = ProjectStyleLabel(text: "3400 m")
     var humidityIcon =   makeIconImageView(systemName: IconNames.humidity.rawValue)
-    var visibilityLabel = ProjectStyleLabel(text: "3400 m")
-    var visibilityIcon =   makeIconImageView(systemName: IconNames.visibility.rawValue)
     var pressureLabel = ProjectStyleLabel(text: "1015 hPa")
     var pressureIcon = makeIconImageView(systemName: IconNames.pressure.rawValue)
     var windSpeedLabel = ProjectStyleLabel(text: "8 km/h")
@@ -19,7 +19,7 @@ class CurrentWeatherViewController: UIViewController {
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
     
     var shareButton = UIButton()
-    var weather: CurrentWeather?
+//    var forecast: Forecast?
     
     private var viewModel = ViewModel()
     
@@ -60,10 +60,10 @@ class CurrentWeatherViewController: UIViewController {
         
         let centralStackView = setVerticalStackView(views: [cityLabel, tempLabel, descriptionLabel], spacing: 10)
         
-        let humidityStackView = setVerticalStackView(views: [humidityIcon, humidityLabel], spacing: 10)
-        let visibilityStackView = setVerticalStackView(views: [visibilityIcon, visibilityLabel], spacing: 10)
+        let popStackView = setVerticalStackView(views: [probabilityOfPrecipitationIcon, probabilityOfPrecipitationLabel], spacing: 10)
+        let rainVolumeStackView = setVerticalStackView(views: [humidityIcon, humidityLabel], spacing: 10)
         let pressureStackView = setVerticalStackView(views: [pressureIcon, pressureLabel], spacing: 10)
-        let firstRowStackView = setHorizontalStackView(views: [humidityStackView, visibilityStackView, pressureStackView], spacing: 70)
+        let firstRowStackView = setHorizontalStackView(views: [popStackView, rainVolumeStackView, pressureStackView], spacing: 70)
         
         let  windSpeedStackView = setVerticalStackView(views: [windSpeedIcon, windSpeedLabel])
         let windDirectionStackView = setVerticalStackView(views: [windDirectionIcon, windDirectionLabel])
@@ -102,7 +102,7 @@ class CurrentWeatherViewController: UIViewController {
         self.viewModel.temp.bind { (text) in self.tempLabel.text = text }
         self.viewModel.weatherDescription.bind { (text) in self.descriptionLabel.text = text }
         self.viewModel.humidity.bind { (text) in self.humidityLabel.text = text }
-        self.viewModel.visibility.bind { (text) in self.visibilityLabel.text = text }
+        self.viewModel.probabilityOfPrecipitation.bind { (text) in self.probabilityOfPrecipitationLabel.text = text }
         self.viewModel.pressure.bind { (text) in self.pressureLabel.text = text }
         self.viewModel.windSpeed.bind { (text) in self.windSpeedLabel.text = text }
         self.viewModel.windDirection.bind { (text) in self.windDirectionLabel.text = text }

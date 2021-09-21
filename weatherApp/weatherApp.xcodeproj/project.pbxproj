@@ -25,6 +25,7 @@
 		4F3BBEA026F780F6004F04C1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */; };
 		4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA126F78193004F04C1 /* Fonts.swift */; };
 		4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */; };
+		4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		4F3BBEA126F78193004F04C1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
+		4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3BBE8926F624C5004F04C1 /* CurrentWeather.swift */,
+				4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */,
 				4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */,
 				4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */,
 				4F3BBE8826F62434004F04C1 /* NetworkingService.swift in Sources */,
