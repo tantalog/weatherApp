@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+extension UIResponder {
     
     func setVerticalStackView(views: [UIView], spacing: CGFloat = 5, alignment: UIStackView.Alignment = .center ) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
@@ -21,6 +21,7 @@ extension UIViewController {
         stackView.spacing = spacing
         return stackView
     }
+    
 }
 
 extension UIColor {

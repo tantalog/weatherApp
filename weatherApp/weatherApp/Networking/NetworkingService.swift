@@ -25,18 +25,6 @@ class NetworkingService {
         task.resume()
     }
     
-    func loadCity(latitude: String, longitude: String, complition:@escaping (City?, Error?)->()) {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&units=metric&appid=f0cfe7251fba12244ee19e5184cf7eb5") else {return}
-        var request: URLRequest = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if (error != nil) {
-                return
-            }
-            self.parser.parseCity(data!, complition: complition)
-        }
-        task.resume()
-    }
     
     func loadImageForURL(url: String, complition: @escaping (UIImage)->()) {
         cancelDownloadingForUrl(url: url)

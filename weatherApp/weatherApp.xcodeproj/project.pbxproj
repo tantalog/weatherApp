@@ -26,6 +26,7 @@
 		4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA126F78193004F04C1 /* Fonts.swift */; };
 		4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */; };
 		4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */; };
+		4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		4F3BBEA126F78193004F04C1 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 		4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				4F3BBE9926F75E35004F04C1 /* Helpers */,
-				4F3BBE9126F68FA3004F04C1 /* ViewModel */,
 				4F3BBE8226F62244004F04C1 /* Networking */,
+				4F3BBE9126F68FA3004F04C1 /* ViewModel */,
 				4F3BBE8126F621AC004F04C1 /* Model */,
-				4F3BBE8026F62178004F04C1 /* View Controllers */,
+				4F3BBE8026F62178004F04C1 /* Controllers */,
 				4F3BBE9426F6A716004F04C1 /* Views */,
 				4F3BBE7F26F62155004F04C1 /* Resources */,
 				4F3BBE7E26F62114004F04C1 /* Supporting Files */,
@@ -113,15 +115,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4F3BBE8026F62178004F04C1 /* View Controllers */ = {
+		4F3BBE8026F62178004F04C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */,
-				4F3BBE6E26F5F6E3004F04C1 /* CurrentWeatherViewController.swift */,
-				4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */,
-				4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */,
+				4FE4B4D826FBAD810092AFEE /* ContainerControllers */,
+				4FE4B4D726FBACD00092AFEE /* ForecstViewController */,
+				4FE4B4D626FBACBE0092AFEE /* CurrentWeatherViewController */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		4F3BBE8126F621AC004F04C1 /* Model */ = {
@@ -176,6 +177,32 @@
 				4F3BBE9F26F77FAE004F04C1 /* Poppins-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		4FE4B4D626FBACBE0092AFEE /* CurrentWeatherViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE6E26F5F6E3004F04C1 /* CurrentWeatherViewController.swift */,
+			);
+			path = CurrentWeatherViewController;
+			sourceTree = "<group>";
+		};
+		4FE4B4D726FBACD00092AFEE /* ForecstViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */,
+				4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */,
+			);
+			path = ForecstViewController;
+			sourceTree = "<group>";
+		};
+		4FE4B4D826FBAD810092AFEE /* ContainerControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */,
+				4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */,
+			);
+			path = ContainerControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +285,7 @@
 				4F3BBE6B26F5F6E3004F04C1 /* AppDelegate.swift in Sources */,
 				4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */,
 				4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */,
+				4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */,
 				4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */,
 				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,

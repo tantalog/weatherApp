@@ -29,8 +29,10 @@ class CurrentWeatherViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = self.navigationController?.makeBarButtonItem(target: self, action: #selector(appearanceButtonTapped))
         view.backgroundColor = UIColor.ProjectColors.background
         viewModel.configLocation()
-        viewModel.startLoading()
-        configireUI()
+        viewModel.startLoading() {
+            configireUI()
+        }
+
         setShareButton()
         setUpViews()
     }
@@ -41,7 +43,7 @@ class CurrentWeatherViewController: UIViewController {
         
     }
     
-    func setUpViews() {
+    fileprivate func setUpViews() {
         
         
         conditionIcon = UIImageView(image: UIImage(named: "mockWeatherIcon"))

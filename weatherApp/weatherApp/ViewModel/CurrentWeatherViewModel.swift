@@ -22,6 +22,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     var timestamps: Bindable<[String]> = Bindable([String]())
     var descriptions: Bindable<[String]> = Bindable([String]())
     var temps: Bindable<[String]> = Bindable([String]())
+    var tuple:Bindable<([String], [UIImage], [String], [String], [String])>? = nil
     
     var alert: UIAlertController?
     private var locationManager = CLLocationManager()
@@ -42,7 +43,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func startLoading() {
+    func startLoading(completion: () -> ()) {
         let parser = Parser()
         let networkingService = NetworkingService(with: parser)
         networkingService.loadForecast (latitude: latitude, longitude: longitude) { (forecastData, error) in
@@ -84,12 +85,16 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                             daysArray.append(dayOfTheWeek)
                         }
                         self.timestamps.value.append(timestampForecast.dtTxt)
+                        self.tuple?.value.2.append(timestampForecast.dtTxt)
                         self.temps.value.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
+                        self.tuple?.value.4.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
                         if let timestampWeather = timestampForecast.weather.first {
                             self.descriptions.value.append(timestampWeather.weatherDescription)
+                            self.tuple?.value.3.append(timestampWeather.weatherDescription)
                             networkingService.loadImageForURL(url: ("http://openweathermap.org/img/wn/" + timestampWeather.icon + "@2x.png"))  { (image) in
                                 DispatchQueue.main.async {
                                     self.icons.value.append(image)
+                                    self.tuple?.value.1.append(image)
                                 }
                             }
                         }
@@ -98,9 +103,11 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                     unique.remove(at: 0)
                     unique.insert("Today", at: 0)
                     self.days.value = unique
+                    self.tuple?.value.0 = unique
                 }
             }
         }
+        completion()
     }
     
     
