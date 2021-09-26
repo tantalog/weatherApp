@@ -6,7 +6,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     
     var latitude: String = "55.5"
     var longitude: String = "37.5"
-    var forecast: Forecast?
+
     var icon: Bindable<UIImage> = Bindable(UIImage())
     var city: Bindable<String> = Bindable("")
     var temp: Bindable<String> = Bindable("")
@@ -18,11 +18,11 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     var windDirection: Bindable<String> = Bindable("")
     
     var days: Bindable<[String]> = Bindable([String]())
+    
     var icons: Bindable<[UIImage]> = Bindable([UIImage]())
-    var timestamps: Bindable<[String]> = Bindable([String]())
-    var descriptions: Bindable<[String]> = Bindable([String]())
-    var temps: Bindable<[String]> = Bindable([String]())
-    var tuple:Bindable<([String], [UIImage], [String], [String], [String])>? = nil
+    var timestampsArray: Bindable<[[String]]> = Bindable([[String]]())
+    var descriptionsArray: Bindable<[[String]]> = Bindable([[String]]())
+    var tempsArray: Bindable<[[String]]> = Bindable([[String]]())
     
     var alert: UIAlertController?
     private var locationManager = CLLocationManager()
@@ -59,7 +59,6 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                 }
                 else {
                     guard let forecastData = forecastData else {return}
-                    print(forecastData)
                     self.city.value = forecastData.city.name + ", " + forecastData.city.country
                     if let currentWeather = forecastData.list.first {
                         self.temp.value = String(Int(currentWeather.main.temp)) + "\u{00B0}C"
@@ -80,35 +79,39 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                             }
                         }
                     }
-                    var forecastTuple: ([String], [UIImage], [String], [String], [String])? = nil
+                    var index = 0
                     var daysArray = [String]()
+                    var timestampsArray: [[String]] = [[],[],[],[],[],[]]
+                    var descriptionsArray: [[String]] = [[],[],[],[],[],[]]
+                    var tempsArray: [[String]] = [[],[],[],[],[],[]]
+                    var iconsArray: [[UIImage]] = [[],[],[],[],[],[]]
                     for timestampForecast in forecastData.list {
-                        if let dayOfTheWeek = getDayOfWeek(date: timestampForecast.dtTxt) {
+                        guard let dayOfTheWeek = getDayOfWeek(date: timestampForecast.dtTxt) else {return}
+                        if daysArray.isEmpty {
                             daysArray.append(dayOfTheWeek)
                         }
-                        self.timestamps.value.append(timestampForecast.dtTxt)
-                        forecastTuple?.2.append(timestampForecast.dtTxt)
-                        self.temps.value.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
-                        forecastTuple?.4.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
+                        if dayOfTheWeek != daysArray.last {
+                            daysArray.append(dayOfTheWeek)
+                            index += 1
+                        }
+                        timestampsArray[index].append(timestampForecast.dtTxt)
+                        tempsArray[index].append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
                         if let timestampWeather = timestampForecast.weather.first {
-                            self.descriptions.value.append(timestampWeather.weatherDescription)
-                            forecastTuple?.3.append(timestampWeather.weatherDescription)
+                            descriptionsArray[index].append(timestampWeather.weatherDescription)
                             networkingService.loadImageForURL(url: ("http://openweathermap.org/img/wn/" + timestampWeather.icon + "@2x.png"))  { (image) in
                                 DispatchQueue.main.async {
                                     self.icons.value.append(image)
-                                    self.tuple?.value.1.append(image)
+                                    iconsArray[index].append(image)
                                 }
                             }
                         }
                     }
-                    var  unique = daysArray.removingDuplicates()
-                    unique.remove(at: 0)
-                    unique.insert("Today", at: 0)
-                    self.days.value = unique
-                    forecastTuple?.0 = unique
-                    if let forecastTuple = forecastTuple {
-                        self.tuple?.value = forecastTuple
-                    }
+                    daysArray.remove(at: 0)
+                    daysArray.insert("Today", at: 0)
+                    self.days.value = daysArray
+                    self.timestampsArray.value = timestampsArray
+                    self.descriptionsArray.value = descriptionsArray
+                    self.tempsArray.value = tempsArray
                 }
             }
         }
@@ -122,7 +125,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
         let dateFormatterReturn = DateFormatter()
         dateFormatterReturn.dateFormat = "EEEE"
         if let dateDate = dateDate {
-        return dateFormatterReturn.string(from: dateDate)
+            return dateFormatterReturn.string(from: dateDate)
         }
         return nil
     }

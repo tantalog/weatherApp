@@ -28,7 +28,7 @@ class TabBarController: UITabBarController {
     
     func configireUI() {
         self.viewModel.icon.bind { (image) in self.currentWeatherViewController.conditionIcon.image = image }
-        self.viewModel.city.bind { (text) in self.currentWeatherViewController.cityLabel.text = text }
+//        self.viewModel.city.bind { (text) in self.currentWeatherViewController.cityLabel.text = text }
         self.viewModel.temp.bind { (text) in self.currentWeatherViewController.tempLabel.text = text }
         self.viewModel.weatherDescription.bind { (text) in self.currentWeatherViewController.descriptionLabel.text = text }
         self.viewModel.humidity.bind { (text) in self.currentWeatherViewController.humidityLabel.text = text }
@@ -45,17 +45,19 @@ class TabBarController: UITabBarController {
         self.viewModel.icons.bind { (array) in
             self.forecastViewController.icons = array
         }
-        self.viewModel.timestamps.bind { (array) in
+        self.viewModel.timestampsArray.bind { (array) in
             self.forecastViewController.timestamps = array
         }
-        self.viewModel.descriptions.bind { (array) in
+        self.viewModel.descriptionsArray.bind { (array) in
             self.forecastViewController.descriptions = array
         }
-        self.viewModel.temps.bind { (array) in
+        self.viewModel.tempsArray.bind { (array) in
             self.forecastViewController.temps = array
         }
+        self.viewModel.city.bind { (city) in
+            self.forecastViewController.navigationItem.title = city
+        }
     }
-    
     
     
 }

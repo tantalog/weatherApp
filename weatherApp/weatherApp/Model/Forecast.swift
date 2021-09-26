@@ -18,7 +18,6 @@ struct List: Codable {
     let wind: Wind
     let visibility: Int
     let pop: Double
-//    let rain: Rain
     let sys: Sys
     let dtTxt: String
 

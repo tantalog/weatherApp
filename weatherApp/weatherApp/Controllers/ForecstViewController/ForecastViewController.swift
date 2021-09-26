@@ -15,9 +15,9 @@ class ForecastViewController: UIViewController {
    
     var days: [String] = []
     var icons: [UIImage] = []
-    var timestamps: [String] = []
-    var descriptions: [String] = []
-    var temps: [String] = []
+    var timestamps: [[String]] = []
+    var descriptions: [[String]] = []
+    var temps: [[String]] = []
     
     
     override func viewDidLoad() {
@@ -25,12 +25,7 @@ class ForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ForecastTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        viewModel.configLocation()
-//        viewModel.startLoading()
         setUpViews()
-//        getData {
-//            tableView.reloadData()
-//        }
     }
     
     
@@ -44,14 +39,7 @@ class ForecastViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.backgroundColor = UIColor.ProjectColors.background
     }
-    
-    func getData(complition: ()->()) {
-        self.viewModel.timestamps.bind({ (timestamps) in
-            self.timestamps = timestamps
-        })
-    }
-    
-     
+
     
     @objc func appearanceButtonTapped() {
         switch overrideUserInterfaceStyle {
@@ -67,13 +55,15 @@ class ForecastViewController: UIViewController {
     }
 }
 
+
 extension ForecastViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timestamps.count
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return days.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return timestamps[section].count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -81,8 +71,16 @@ extension ForecastViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var sectionIndex = 0
+        var index = 0
+        while sectionIndex < indexPath.section {
+            index += timestamps[sectionIndex].count
+            sectionIndex += 1
+        }
+        let iconindex =  index + indexPath.row 
+        
         let forecastTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ForecastTableViewCell
-        forecastTableViewCell.configureCellWith(icon: icons[indexPath.row], timestamp: timestamps[indexPath.row], description: descriptions[indexPath.row], temp: temps[indexPath.row])
+        forecastTableViewCell.configureCellWith(icon: icons[iconindex], timestamp: timestamps[indexPath.section][indexPath.row], description: descriptions[indexPath.section][indexPath.row], temp: temps[indexPath.section][indexPath.row])
         return forecastTableViewCell
     }
 }

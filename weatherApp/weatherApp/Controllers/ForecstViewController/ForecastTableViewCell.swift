@@ -39,23 +39,18 @@ class ForecastTableViewCell: UITableViewCell {
         tempretureLabel.text = temp 
     }
     
-    
     fileprivate func setUpViews() {
         contentView.addSubview(horizontalStackView)
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         horizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-        
+        horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true 
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-
-    
+  
 
 }

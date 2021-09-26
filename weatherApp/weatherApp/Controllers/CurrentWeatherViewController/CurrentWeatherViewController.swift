@@ -21,35 +21,21 @@ class CurrentWeatherViewController: UIViewController {
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
     
     var shareButton = UIButton()
-    //    var forecast: Forecast?
-    
-    private var viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Today"
         self.navigationItem.rightBarButtonItem = self.navigationController?.makeBarButtonItem(target: self, action: #selector(appearanceButtonTapped))
         view.backgroundColor = UIColor.ProjectColors.background
-//        viewModel.configLocation()
-//        viewModel.startLoading()
         setShareButton()
         setUpViews()
-//        configireUI()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        
-    }
     
     fileprivate func setUpViews() {
         
-        
-        conditionIcon = UIImageView(image: UIImage(named: "mockWeatherIcon"))
         conditionIcon.contentMode = .scaleAspectFill
         conditionIcon.clipsToBounds = true
-        
         
         view.addSubview(mainScrollView)
         
@@ -95,21 +81,6 @@ class CurrentWeatherViewController: UIViewController {
         shareButton.setTitleColor(.systemBlue, for: .normal)
         shareButton.titleLabel?.backgroundColor = .none
     }
-    
-    
-    
-    func configireUI() {
-        self.viewModel.icon.bind { (image) in self.conditionIcon.image = image }
-        self.viewModel.city.bind { (text) in self.cityLabel.text = text }
-        self.viewModel.temp.bind { (text) in self.tempLabel.text = text }
-        self.viewModel.weatherDescription.bind { (text) in self.descriptionLabel.text = text }
-        self.viewModel.humidity.bind { (text) in self.humidityLabel.text = text }
-        self.viewModel.probabilityOfPrecipitation.bind { (text) in self.probabilityOfPrecipitationLabel.text = text }
-        self.viewModel.pressure.bind { (text) in self.pressureLabel.text = text }
-        self.viewModel.windSpeed.bind { (text) in self.windSpeedLabel.text = text }
-        self.viewModel.windDirection.bind { (text) in self.windDirectionLabel.text = text }
-    }
-    
     
     @objc func appearanceButtonTapped() {
         switch overrideUserInterfaceStyle {

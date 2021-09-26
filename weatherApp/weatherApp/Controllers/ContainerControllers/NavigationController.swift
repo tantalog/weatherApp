@@ -6,7 +6,6 @@ class NavigationController: UINavigationController {
         super.viewDidLoad()
         configureNavigationBar()
     }
-    
 
     
     private func configureNavigationBar() {
@@ -18,12 +17,6 @@ class NavigationController: UINavigationController {
         self.navigationBar.tintColor = UIColor.ProjectColors.titleText
         self.navigationBar.isTranslucent = false
     }
-    
-    
-
-    
-
-    
 
 
 }
