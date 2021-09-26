@@ -43,7 +43,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func startLoading(completion: () -> ()) {
+    func startLoading() {
         let parser = Parser()
         let networkingService = NetworkingService(with: parser)
         networkingService.loadForecast (latitude: latitude, longitude: longitude) { (forecastData, error) in
@@ -59,6 +59,7 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                 }
                 else {
                     guard let forecastData = forecastData else {return}
+                    print(forecastData)
                     self.city.value = forecastData.city.name + ", " + forecastData.city.country
                     if let currentWeather = forecastData.list.first {
                         self.temp.value = String(Int(currentWeather.main.temp)) + "\u{00B0}C"
@@ -79,18 +80,19 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                             }
                         }
                     }
+                    var forecastTuple: ([String], [UIImage], [String], [String], [String])? = nil
                     var daysArray = [String]()
                     for timestampForecast in forecastData.list {
                         if let dayOfTheWeek = getDayOfWeek(date: timestampForecast.dtTxt) {
                             daysArray.append(dayOfTheWeek)
                         }
                         self.timestamps.value.append(timestampForecast.dtTxt)
-                        self.tuple?.value.2.append(timestampForecast.dtTxt)
+                        forecastTuple?.2.append(timestampForecast.dtTxt)
                         self.temps.value.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
-                        self.tuple?.value.4.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
+                        forecastTuple?.4.append(String(Int(timestampForecast.main.temp)) + "\u{00B0}C")
                         if let timestampWeather = timestampForecast.weather.first {
                             self.descriptions.value.append(timestampWeather.weatherDescription)
-                            self.tuple?.value.3.append(timestampWeather.weatherDescription)
+                            forecastTuple?.3.append(timestampWeather.weatherDescription)
                             networkingService.loadImageForURL(url: ("http://openweathermap.org/img/wn/" + timestampWeather.icon + "@2x.png"))  { (image) in
                                 DispatchQueue.main.async {
                                     self.icons.value.append(image)
@@ -103,11 +105,13 @@ class ViewModel: NSObject, CLLocationManagerDelegate {
                     unique.remove(at: 0)
                     unique.insert("Today", at: 0)
                     self.days.value = unique
-                    self.tuple?.value.0 = unique
+                    forecastTuple?.0 = unique
+                    if let forecastTuple = forecastTuple {
+                        self.tuple?.value = forecastTuple
+                    }
                 }
             }
         }
-        completion()
     }
     
     

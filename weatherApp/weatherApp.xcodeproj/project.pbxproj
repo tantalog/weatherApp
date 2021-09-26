@@ -27,6 +27,7 @@
 		4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */; };
 		4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */; };
 		4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */; };
+		4FE4B4DE27006F020092AFEE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4DD27006F020092AFEE /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 		4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		4FE4B4DD27006F020092AFEE /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				4F3BBE8326F6226F004F04C1 /* ImageDownloadOperation.swift */,
 				4F3BBE8526F622A5004F04C1 /* Parser.swift */,
 				4F3BBE8726F62434004F04C1 /* NetworkingService.swift */,
+				4FE4B4DD27006F020092AFEE /* Config.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */,
 				4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */,
 				4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */,
+				4FE4B4DE27006F020092AFEE /* Config.swift in Sources */,
 				4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */,
 				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,

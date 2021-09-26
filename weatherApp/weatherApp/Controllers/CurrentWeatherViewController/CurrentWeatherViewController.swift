@@ -2,6 +2,8 @@ import UIKit
 
 class CurrentWeatherViewController: UIViewController {
     
+    
+    let forecastViewController = ForecastViewController()
     let mainScrollView: UIScrollView = {UIScrollView()}()
     var conditionIcon = UIImageView()
     var cityLabel = ProjectStyleLabel(text: "Minsk, BY")
@@ -19,7 +21,7 @@ class CurrentWeatherViewController: UIViewController {
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
     
     var shareButton = UIButton()
-//    var forecast: Forecast?
+    //    var forecast: Forecast?
     
     private var viewModel = ViewModel()
     
@@ -28,13 +30,11 @@ class CurrentWeatherViewController: UIViewController {
         self.navigationItem.title = "Today"
         self.navigationItem.rightBarButtonItem = self.navigationController?.makeBarButtonItem(target: self, action: #selector(appearanceButtonTapped))
         view.backgroundColor = UIColor.ProjectColors.background
-        viewModel.configLocation()
-        viewModel.startLoading() {
-            configireUI()
-        }
-
+//        viewModel.configLocation()
+//        viewModel.startLoading()
         setShareButton()
         setUpViews()
+//        configireUI()
     }
     
     override func viewWillLayoutSubviews() {
@@ -109,6 +109,7 @@ class CurrentWeatherViewController: UIViewController {
         self.viewModel.windSpeed.bind { (text) in self.windSpeedLabel.text = text }
         self.viewModel.windDirection.bind { (text) in self.windDirectionLabel.text = text }
     }
+    
     
     @objc func appearanceButtonTapped() {
         switch overrideUserInterfaceStyle {
