@@ -26,6 +26,11 @@
 		4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */; };
 		4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */; };
 		4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */; };
+		4FE4B4E32701216C0092AFEE /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4E22701216C0092AFEE /* Manager.swift */; };
+		4FE4B4E5270125810092AFEE /* CurrentWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4E4270125810092AFEE /* CurrentWeatherViewModel.swift */; };
+		4FE4B4E7270125D60092AFEE /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4E6270125D60092AFEE /* ForecastViewModel.swift */; };
+		4FE4B4E92701265D0092AFEE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4E82701265D0092AFEE /* Location.swift */; };
+		4FE4B4EB2701F7B20092AFEE /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4B4EA2701F7B20092AFEE /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		4F3BBEA526F7E7CE004F04C1 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 		4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		4FE4B4D926FBAE030092AFEE /* ForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewCell.swift; sourceTree = "<group>"; };
+		4FE4B4E22701216C0092AFEE /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		4FE4B4E4270125810092AFEE /* CurrentWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherViewModel.swift; sourceTree = "<group>"; };
+		4FE4B4E6270125D60092AFEE /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
+		4FE4B4E82701265D0092AFEE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		4FE4B4EA2701F7B20092AFEE /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +94,7 @@
 			children = (
 				4F3BBE9926F75E35004F04C1 /* Helpers */,
 				4F3BBE8226F62244004F04C1 /* Networking */,
+				4FE4B4E1270121560092AFEE /* Manager */,
 				4F3BBE9126F68FA3004F04C1 /* ViewModel */,
 				4F3BBE8126F621AC004F04C1 /* Model */,
 				4F3BBE8026F62178004F04C1 /* Controllers */,
@@ -119,6 +130,7 @@
 				4FE4B4D826FBAD810092AFEE /* ContainerControllers */,
 				4FE4B4D626FBACBE0092AFEE /* CurrentWeatherViewController */,
 				4FE4B4D726FBACD00092AFEE /* ForecstViewController */,
+				4FE4B4EA2701F7B20092AFEE /* WeatherViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3BBEA926FA3C7D004F04C1 /* Forecast.swift */,
+				4FE4B4E82701265D0092AFEE /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +159,8 @@
 			children = (
 				4F3BBE8F26F68DDA004F04C1 /* ViewModel.swift */,
 				4F3BBE9226F68FBE004F04C1 /* Bindable.swift */,
+				4FE4B4E4270125810092AFEE /* CurrentWeatherViewModel.swift */,
+				4FE4B4E6270125D60092AFEE /* ForecastViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -200,6 +215,14 @@
 				4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */,
 			);
 			path = ContainerControllers;
+			sourceTree = "<group>";
+		};
+		4FE4B4E1270121560092AFEE /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4FE4B4E22701216C0092AFEE /* Manager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,7 +297,10 @@
 			files = (
 				4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */,
 				4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */,
+				4FE4B4E92701265D0092AFEE /* Location.swift in Sources */,
 				4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */,
+				4FE4B4EB2701F7B20092AFEE /* WeatherViewController.swift in Sources */,
+				4FE4B4E7270125D60092AFEE /* ForecastViewModel.swift in Sources */,
 				4F3BBE8826F62434004F04C1 /* NetworkingService.swift in Sources */,
 				4F3BBE8626F622A5004F04C1 /* Parser.swift in Sources */,
 				4F3BBE9026F68DDA004F04C1 /* ViewModel.swift in Sources */,
@@ -283,11 +309,13 @@
 				4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */,
 				4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */,
 				4FE4B4DA26FBAE030092AFEE /* ForecastTableViewCell.swift in Sources */,
+				4FE4B4E5270125810092AFEE /* CurrentWeatherViewModel.swift in Sources */,
 				4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */,
 				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,
 				4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */,
 				4F3BBE8426F6226F004F04C1 /* ImageDownloadOperation.swift in Sources */,
+				4FE4B4E32701216C0092AFEE /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -411,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

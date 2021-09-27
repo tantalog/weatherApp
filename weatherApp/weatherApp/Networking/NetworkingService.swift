@@ -2,28 +2,27 @@ import Foundation
 import UIKit
 
 class NetworkingService {
-    var parser: Parser
+//    var parser: Parser
     var queue: OperationQueue
     var operations: [String: [Operation]]
     
-    init(with parser: Parser) {
-        self.parser = parser
+    init() {
         self.queue = OperationQueue()
         self.operations = [String: [Operation]]()
     }
     
-    func loadForecast(latitude: String, longitude: String, complition:@escaping (Forecast?, Error?)->()) {
-      guard let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&units=metric&appid=f0cfe7251fba12244ee19e5184cf7eb5") else {return}
-        var request: URLRequest = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if (error != nil) {
-                return
-            }
-            self.parser.parseForecast(data!, complition: complition)
-        }
-        task.resume()
-    }
+//    func loadForecast(latitude: String, longitude: String, complition:@escaping (Forecast?, Error?)->()) {
+//      guard let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&units=metric&appid=f0cfe7251fba12244ee19e5184cf7eb5") else {return}
+//        var request: URLRequest = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            if (error != nil) {
+//                return
+//            }
+//            self.parser.parseForecast(data!, complition: complition)
+//        }
+//        task.resume()
+//    }
     
     
     func loadImageForURL(url: String, complition: @escaping (UIImage)->()) {

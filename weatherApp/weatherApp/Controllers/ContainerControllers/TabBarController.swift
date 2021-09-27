@@ -1,16 +1,90 @@
 import UIKit
+import CoreLocation
 
 class TabBarController: UITabBarController {
     let currentWeatherViewController = CurrentWeatherViewController()
     let forecastViewController = ForecastViewController()
     private var viewModel = ViewModel()
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.distanceFilter = 1000
+        manager.desiredAccuracy = 1000
+        return manager
+    }()
+    
+    private var currentLocation: CLLocation? {
+        didSet {
+            fetchCity()
+            fetchForecast()
+        }
+    }
+    
+    private func fetchForecast() {
+        guard let currentLocation = currentLocation else { return }
+        
+        let lat = currentLocation.coordinate.latitude
+        let lon = currentLocation.coordinate.longitude
+        
+
+        ForecastManager.shared.forecastAt(latitude: lat, longitude: lon, completion: {
+            response, error in
+            if let error = error {
+                dump(error)
+            } else if let response = response {
+                // Nofity CurrentWeatherViewController
+                self.currentWeatherViewController.viewModel?.forecast = response
+                self.forecastViewController.viewModel = ForecastViewModel(list: response.list)
+            }
+        })
+    }
+    
+    private func fetchCity() {
+        guard let currentLocation = currentLocation else { return }
+        
+        CLGeocoder().reverseGeocodeLocation(currentLocation, completionHandler: {
+            placemarks, error in
+            if let error = error {
+                dump(error)
+            }
+            else if let city = placemarks?.first?.locality {
+                let l = Location(
+                    name: city,
+                    latitude: currentLocation.coordinate.latitude,
+                    longitude: currentLocation.coordinate.longitude)
+                self.currentWeatherViewController.viewModel?.location = l
+                self.forecastViewController.navigationItem.title = city
+            }
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.configLocation()
-        viewModel.startLoading()
-        configireUI()
         setupControllers()
+        setupActiveNotification()
+        currentWeatherViewController.viewModel = CurrentWeatherViewModel()
+
+    }
+    
+    private func setupActiveNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(TabBarController.applicationDidBecomeActive(notification:)),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
+    }
+    
+    @objc func applicationDidBecomeActive(notification: Notification) {
+        requestLocation()
+    }
+    
+    private func requestLocation() {
+        locationManager.delegate = self
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     func setupControllers() {
@@ -26,38 +100,25 @@ class TabBarController: UITabBarController {
         self.tabBar.unselectedItemTintColor = .systemGray
     }
     
-    func configireUI() {
-        self.viewModel.icon.bind { (image) in self.currentWeatherViewController.conditionIcon.image = image }
-//        self.viewModel.city.bind { (text) in self.currentWeatherViewController.cityLabel.text = text }
-        self.viewModel.temp.bind { (text) in self.currentWeatherViewController.tempLabel.text = text }
-        self.viewModel.weatherDescription.bind { (text) in self.currentWeatherViewController.descriptionLabel.text = text }
-        self.viewModel.humidity.bind { (text) in self.currentWeatherViewController.humidityLabel.text = text }
-        self.viewModel.probabilityOfPrecipitation.bind { (text) in self.currentWeatherViewController.probabilityOfPrecipitationLabel.text = text }
-        self.viewModel.pressure.bind { (text) in self.currentWeatherViewController.pressureLabel.text = text }
-        self.viewModel.windSpeed.bind { (text) in self.currentWeatherViewController.windSpeedLabel.text = text }
-        self.viewModel.windDirection.bind { (text) in self.currentWeatherViewController.windDirectionLabel.text = text }
-        self.viewModel.days.bind { (array) in
-            self.forecastViewController.days = array
-        }
-        self.viewModel.days.bind { (array) in
-            self.forecastViewController.days = array
-        }
-        self.viewModel.icons.bind { (array) in
-            self.forecastViewController.icons = array
-        }
-        self.viewModel.timestampsArray.bind { (array) in
-            self.forecastViewController.timestamps = array
-        }
-        self.viewModel.descriptionsArray.bind { (array) in
-            self.forecastViewController.descriptions = array
-        }
-        self.viewModel.tempsArray.bind { (array) in
-            self.forecastViewController.temps = array
-        }
-        self.viewModel.city.bind { (city) in
-            self.forecastViewController.navigationItem.title = city
+}
+
+
+extension TabBarController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            currentLocation = location
+            manager.delegate = nil
+            manager.stopUpdatingLocation()
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            manager.requestLocation()
+        }
+    }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        dump(error)
+    }
 }

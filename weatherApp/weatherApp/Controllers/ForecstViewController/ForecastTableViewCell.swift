@@ -4,17 +4,19 @@ import UIKit
 class ForecastTableViewCell: UITableViewCell {
     var iconImageView: UIImageView = {
     let imageView = UIImageView()
-        imageView.image = UIImage(named: "mockWeatherIcon")
+        imageView.image = UIImage()
         imageView.contentMode = .scaleAspectFit
     return imageView
 }()
     var timeLabel = ProjectStyleLabel(text: "13:00")
     var descriptionLabel = ProjectStyleLabel(text:"light intensity drizzle", textColor: UIColor.ProjectColors.descriptionText)
     var tempretureLabel = ProjectStyleLabel(text: "28\u{00B0}C", fontSize: 48)
+    
     lazy var middleStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [timeLabel, descriptionLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -32,11 +34,11 @@ class ForecastTableViewCell: UITableViewCell {
         setUpViews()
     }
     
-    func configureCellWith(icon: UIImage, timestamp: String, description: String, temp: String) {
+    func configureCellWith(icon: UIImage?, timestamp: String, description: String, temp: String) {
         iconImageView.image = icon
         timeLabel.text = timestamp
         descriptionLabel.text = description
-        tempretureLabel.text = temp 
+        tempretureLabel.text = temp
     }
     
     fileprivate func setUpViews() {

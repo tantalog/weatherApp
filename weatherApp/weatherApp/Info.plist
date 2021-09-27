@@ -46,10 +46,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Please</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please</string>
+	<string>We&apos;d like to get your location data to provide weather info</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Regular.ttf</string>

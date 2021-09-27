@@ -1,26 +1,32 @@
 import UIKit
 
-class CurrentWeatherViewController: UIViewController {
+class CurrentWeatherViewController: WeatherViewController {
     
     
     let forecastViewController = ForecastViewController()
     let mainScrollView: UIScrollView = {UIScrollView()}()
     var conditionIcon = UIImageView()
-    var cityLabel = ProjectStyleLabel(text: "Minsk, BY")
-    var tempLabel = ProjectStyleLabel(text: "28\u{00B0}C", fontSize: 48)
-    var descriptionLabel = ProjectStyleLabel(text:"light intensity drizzle", textColor: UIColor.ProjectColors.descriptionText)
-    var probabilityOfPrecipitationLabel = ProjectStyleLabel(text: "95%")
+    var cityLabel = ProjectStyleLabel()
+    var tempLabel = ProjectStyleLabel(fontSize: 48)
+    var descriptionLabel = ProjectStyleLabel(textColor: UIColor.ProjectColors.descriptionText)
+    var probabilityOfPrecipitationLabel = ProjectStyleLabel()
     var probabilityOfPrecipitationIcon =   makeIconImageView(systemName: IconNames.pop.rawValue)
-    var humidityLabel = ProjectStyleLabel(text: "3400 m")
+    var humidityLabel = ProjectStyleLabel()
     var humidityIcon =   makeIconImageView(systemName: IconNames.humidity.rawValue)
-    var pressureLabel = ProjectStyleLabel(text: "1015 hPa")
+    var pressureLabel = ProjectStyleLabel()
     var pressureIcon = makeIconImageView(systemName: IconNames.pressure.rawValue)
-    var windSpeedLabel = ProjectStyleLabel(text: "8 km/h")
+    var windSpeedLabel = ProjectStyleLabel()
     var windSpeedIcon = makeIconImageView(systemName: IconNames.windSpeed.rawValue)
-    var windDirectionLabel = ProjectStyleLabel(text: "SE")
+    var windDirectionLabel = ProjectStyleLabel()
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
     
     var shareButton = UIButton()
+    
+    var viewModel: CurrentWeatherViewModel? {
+        didSet {
+            DispatchQueue.main.async { self.updateView() }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,33 @@ class CurrentWeatherViewController: UIViewController {
         view.backgroundColor = UIColor.ProjectColors.background
         setShareButton()
         setUpViews()
+    }
+    
+    func updateView() {
+        activityIndicatorView.stopAnimating()
+        
+        if let vm = viewModel, vm.isUpdateReady {
+            updateWeatherContainer(with: vm)
+        } else {
+            loadingFailedLabel.isHidden = false
+            loadingFailedLabel.text = "Fetch weather/location failed."
+        }
+    }
+    
+    func updateWeatherContainer(with vm: CurrentWeatherViewModel) {
+        weatherContainerView.isHidden = false
+        loadingFailedLabel.isHidden = true
+        
+        cityLabel.text = vm.city
+        tempLabel.text = vm.temperature
+        descriptionLabel.text = vm.description
+        probabilityOfPrecipitationLabel.text = vm.probabilityOfPrecipitation
+        humidityLabel.text = vm.humidity
+        pressureLabel.text = vm.pressure
+        windSpeedLabel.text = vm.windSpeed
+        windDirectionLabel.text = vm.windDirection
+        conditionIcon.image = vm.icon
+        
     }
     
     

@@ -1,8 +1,7 @@
 import UIKit
 
-class ForecastViewController: UIViewController {
+class ForecastViewController: WeatherViewController {
     
-    private var viewModel: ViewModel = ViewModel()
     private let cellReuseIdentifier = "forecastTableViewCell"
 
     let tableView: UITableView = {
@@ -12,13 +11,30 @@ class ForecastViewController: UIViewController {
         return tableView
     }()
     
-   
-    var days: [String] = []
-    var icons: [UIImage] = []
-    var timestamps: [[String]] = []
-    var descriptions: [[String]] = []
-    var temps: [[String]] = []
+    var viewModel: ForecastViewModel? {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateView()
+            }
+        }
+    }
     
+    func updateView() {
+        activityIndicatorView.stopAnimating()
+        
+        if let _ = viewModel {
+            updateWeatherDataContainer()
+        } else {
+            loadingFailedLabel.isHidden = false
+            loadingFailedLabel.text = "Load Location/Weather failed!"
+        }
+    }
+    
+    func updateWeatherDataContainer() {
+        weatherContainerView.isHidden = false
+        tableView.reloadData()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,28 +75,24 @@ class ForecastViewController: UIViewController {
 extension ForecastViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return days.count
+        return viewModel?.numberOfSections ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timestamps[section].count
+        return viewModel?.numberOfRows(for: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return days[section]
+        return viewModel?.day(for: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var sectionIndex = 0
-        var index = 0
-        while sectionIndex < indexPath.section {
-            index += timestamps[sectionIndex].count
-            sectionIndex += 1
-        }
-        let iconindex =  index + indexPath.row 
         
         let forecastTableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ForecastTableViewCell
-        forecastTableViewCell.configureCellWith(icon: icons[iconindex], timestamp: timestamps[indexPath.section][indexPath.row], description: descriptions[indexPath.section][indexPath.row], temp: temps[indexPath.section][indexPath.row])
+        guard let viewModel = viewModel else {return forecastTableViewCell}
+        
+        forecastTableViewCell.configureCellWith(icon: viewModel.icon(for: indexPath.section, row: indexPath.row), timestamp: viewModel.timeStamp(for: indexPath.section, row: indexPath.row), description: viewModel.description(for: indexPath.section, row: indexPath.row), temp: viewModel.temp(for: indexPath.section, row: indexPath.row))
+        
         return forecastTableViewCell
     }
 }
