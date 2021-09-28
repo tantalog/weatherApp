@@ -19,6 +19,7 @@ class CurrentWeatherViewController: WeatherViewController {
     var windSpeedIcon = makeIconImageView(systemName: IconNames.windSpeed.rawValue)
     var windDirectionLabel = ProjectStyleLabel()
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
+    var messageToShare: String?
     
     var shareButton = UIButton()
     
@@ -61,6 +62,15 @@ class CurrentWeatherViewController: WeatherViewController {
         windSpeedLabel.text = vm.windSpeed
         windDirectionLabel.text = vm.windDirection
         conditionIcon.image = vm.icon
+        messageToShare = """
+        location: \(vm.city)
+        temp: \(vm.temperature)
+        description: \(vm.description)
+        probability of precipitation: \(vm.probabilityOfPrecipitation)
+        humidity: \(vm.humidity)
+        pressure: \(vm.pressure)
+        wind speed: \(vm.windSpeed)
+"""
         
     }
     
@@ -113,6 +123,7 @@ class CurrentWeatherViewController: WeatherViewController {
         shareButton.titleLabel?.textAlignment = .center
         shareButton.setTitleColor(.systemBlue, for: .normal)
         shareButton.titleLabel?.backgroundColor = .none
+        shareButton.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
     }
     
     @objc func appearanceButtonTapped() {
@@ -126,6 +137,13 @@ class CurrentWeatherViewController: WeatherViewController {
             self.navigationController?.overrideUserInterfaceStyle = .dark
             self.tabBarController?.overrideUserInterfaceStyle = .dark
         }
+    }
+    
+    @objc func shareButtonTapped(_ sender: UIButton) {
+        let textToShare = [messageToShare]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
 }
