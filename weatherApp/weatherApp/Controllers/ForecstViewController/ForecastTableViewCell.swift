@@ -8,9 +8,9 @@ class ForecastTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFit
     return imageView
 }()
-    var timeLabel = ProjectStyleLabel(text: "13:00")
-    var descriptionLabel = ProjectStyleLabel(text:"light intensity drizzle", textColor: UIColor.ProjectColors.descriptionText)
-    var tempretureLabel = ProjectStyleLabel(text: "28\u{00B0}C", fontSize: 48)
+    var timeLabel = ProjectStyleLabel()
+    var descriptionLabel = ProjectStyleLabel(textColor: UIColor.ProjectColors.descriptionText)
+    var tempretureLabel = ProjectStyleLabel(fontSize: 48)
     
     lazy var middleStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [timeLabel, descriptionLabel])
@@ -26,7 +26,6 @@ class ForecastTableViewCell: UITableViewCell {
         stackView.distribution = .equalSpacing
         return stackView
     }()
-    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

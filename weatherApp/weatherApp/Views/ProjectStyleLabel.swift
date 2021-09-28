@@ -10,7 +10,5 @@ class ProjectStyleLabel: UILabel {
         self.textColor = textColor
         self.font = UIFont.systemFont(ofSize: fontSize)
         self.translatesAutoresizingMaskIntoConstraints = false
-        
     }
-    
 }

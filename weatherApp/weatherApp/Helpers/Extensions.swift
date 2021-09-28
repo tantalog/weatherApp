@@ -38,11 +38,8 @@ extension UIColor {
 extension UINavigationController {
     func makeBarButtonItem(image: UIImage = UIImage(named: "modeButtonImage")!, target: Any?, action: Selector?) -> UIBarButtonItem {
         let button: UIButton = UIButton(type: UIButton.ButtonType.custom)
-                //set image for button
         button.setImage(image, for: .normal)
-                //add function for button
         button.addTarget(target, action: action!, for: .touchUpInside)
-                //set frame
         let barButtonItem = UIBarButtonItem(customView: button)
         return barButtonItem
     }
@@ -59,19 +56,6 @@ extension UIViewController {
     }
 }
 
-extension Array where Element: Hashable {
-    func removingDuplicates() -> [Element] {
-        var addedDict = [Element: Bool]()
-
-        return filter {
-            addedDict.updateValue(true, forKey: $0) == nil
-        }
-    }
-
-    mutating func removeDuplicates() {
-        self = self.removingDuplicates()
-    }
-}
 struct AnchoredConstraints {
     var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
 }
@@ -111,44 +95,6 @@ extension UIView {
         [anchoredConstraints.top, anchoredConstraints.leading, anchoredConstraints.bottom, anchoredConstraints.trailing, anchoredConstraints.width, anchoredConstraints.height].forEach{ $0?.isActive = true }
         
         return anchoredConstraints
-    }
-    
-    func fillSuperview(padding: UIEdgeInsets = .zero) {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let superviewTopAnchor = superview?.topAnchor {
-            topAnchor.constraint(equalTo: superviewTopAnchor, constant: padding.top).isActive = true
-        }
-        
-        if let superviewBottomAnchor = superview?.bottomAnchor {
-            bottomAnchor.constraint(equalTo: superviewBottomAnchor, constant: -padding.bottom).isActive = true
-        }
-        
-        if let superviewLeadingAnchor = superview?.leadingAnchor {
-            leadingAnchor.constraint(equalTo: superviewLeadingAnchor, constant: padding.left).isActive = true
-        }
-        
-        if let superviewTrailingAnchor = superview?.trailingAnchor {
-            trailingAnchor.constraint(equalTo: superviewTrailingAnchor, constant: -padding.right).isActive = true
-        }
-    }
-    
-    func centerInSuperview(size: CGSize = .zero) {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let superviewCenterXAnchor = superview?.centerXAnchor {
-            centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
-        }
-        
-        if let superviewCenterYAnchor = superview?.centerYAnchor {
-            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
-        }
-        
-        if size.width != 0 {
-            widthAnchor.constraint(equalToConstant: size.width).isActive = true
-        }
-        
-        if size.height != 0 {
-            heightAnchor.constraint(equalToConstant: size.height).isActive = true
-        }
     }
     
     func centerX(in view: UIView) {

@@ -2,8 +2,6 @@ import UIKit
 
 class CurrentWeatherViewController: WeatherViewController {
     
-    
-    let forecastViewController = ForecastViewController()
     let mainScrollView: UIScrollView = {UIScrollView()}()
     var conditionIcon = UIImageView()
     var cityLabel = ProjectStyleLabel()
@@ -20,9 +18,7 @@ class CurrentWeatherViewController: WeatherViewController {
     var windDirectionLabel = ProjectStyleLabel()
     var windDirectionIcon = makeIconImageView(systemName: IconNames.windDirection.rawValue)
     var messageToShare: String?
-    
     var shareButton = UIButton()
-    
     var viewModel: CurrentWeatherViewModel? {
         didSet {
             DispatchQueue.main.async { self.updateView() }
@@ -70,37 +66,28 @@ class CurrentWeatherViewController: WeatherViewController {
         humidity: \(vm.humidity)
         pressure: \(vm.pressure)
         wind speed: \(vm.windSpeed)
-"""
-        
+        """
     }
     
     
     fileprivate func setUpViews() {
-        
         conditionIcon.contentMode = .scaleAspectFill
         conditionIcon.clipsToBounds = true
-        
         view.addSubview(mainScrollView)
-        
         mainScrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint .activate([mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                       mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                       mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
                                       mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-        
-        
         let centralStackView = setVerticalStackView(views: [cityLabel, tempLabel, descriptionLabel], spacing: 10)
-        
         let popStackView = setVerticalStackView(views: [probabilityOfPrecipitationIcon, probabilityOfPrecipitationLabel], spacing: 10)
         let rainVolumeStackView = setVerticalStackView(views: [humidityIcon, humidityLabel], spacing: 10)
         let pressureStackView = setVerticalStackView(views: [pressureIcon, pressureLabel], spacing: 10)
         let firstRowStackView = setHorizontalStackView(views: [popStackView, rainVolumeStackView, pressureStackView], spacing: 70)
-        
         let  windSpeedStackView = setVerticalStackView(views: [windSpeedIcon, windSpeedLabel])
         let windDirectionStackView = setVerticalStackView(views: [windDirectionIcon, windDirectionLabel])
         let secondRowStackView = setHorizontalStackView(views: [windSpeedStackView, windDirectionStackView])
         let dataStackView = setVerticalStackView(views: [firstRowStackView, secondRowStackView], spacing: 20, alignment: .firstBaseline)
-        
         let verticalStackView = setVerticalStackView(views: [conditionIcon, centralStackView, dataStackView], spacing: 50)
         mainScrollView.addSubview(verticalStackView)
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,8 +95,7 @@ class CurrentWeatherViewController: WeatherViewController {
         verticalStackView.bottomAnchor.constraint(equalTo: shareButton.topAnchor,constant: -50).isActive = true
         NSLayoutConstraint.activate([verticalStackView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
                                      verticalStackView.widthAnchor.constraint(equalTo: view.widthAnchor)])
-        setShareButton()
-        
+        setShareButton() 
     }
     
     func setShareButton() {

@@ -11,13 +11,8 @@
 		4F3BBE6F26F5F6E3004F04C1 /* CurrentWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE6E26F5F6E3004F04C1 /* CurrentWeatherViewController.swift */; };
 		4F3BBE7426F5F6E5004F04C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3BBE7326F5F6E5004F04C1 /* Assets.xcassets */; };
 		4F3BBE7726F5F6E5004F04C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3BBE7526F5F6E5004F04C1 /* LaunchScreen.storyboard */; };
-		4F3BBE8426F6226F004F04C1 /* ImageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8326F6226F004F04C1 /* ImageDownloadOperation.swift */; };
-		4F3BBE8626F622A5004F04C1 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8526F622A5004F04C1 /* Parser.swift */; };
-		4F3BBE8826F62434004F04C1 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8726F62434004F04C1 /* NetworkingService.swift */; };
 		4F3BBE8C26F62A01004F04C1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */; };
 		4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */; };
-		4F3BBE9026F68DDA004F04C1 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE8F26F68DDA004F04C1 /* ViewModel.swift */; };
-		4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9226F68FBE004F04C1 /* Bindable.swift */; };
 		4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */; };
 		4F3BBE9B26F75E46004F04C1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9A26F75E46004F04C1 /* Extensions.swift */; };
 		4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */; };
@@ -40,13 +35,8 @@
 		4F3BBE7326F5F6E5004F04C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F3BBE7626F5F6E5004F04C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F3BBE7826F5F6E5004F04C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F3BBE8326F6226F004F04C1 /* ImageDownloadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadOperation.swift; sourceTree = "<group>"; };
-		4F3BBE8526F622A5004F04C1 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		4F3BBE8726F62434004F04C1 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		4F3BBE8B26F62A01004F04C1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4F3BBE8D26F62BB4004F04C1 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
-		4F3BBE8F26F68DDA004F04C1 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		4F3BBE9226F68FBE004F04C1 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		4F3BBE9526F6A74A004F04C1 /* ProjectStyleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStyleLabel.swift; sourceTree = "<group>"; };
 		4F3BBE9A26F75E46004F04C1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4F3BBE9C26F77D5E004F04C1 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -93,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				4F3BBE9926F75E35004F04C1 /* Helpers */,
-				4F3BBE8226F62244004F04C1 /* Networking */,
 				4FE4B4E1270121560092AFEE /* Manager */,
 				4F3BBE9126F68FA3004F04C1 /* ViewModel */,
 				4F3BBE8126F621AC004F04C1 /* Model */,
@@ -144,21 +133,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4F3BBE8226F62244004F04C1 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				4F3BBE8326F6226F004F04C1 /* ImageDownloadOperation.swift */,
-				4F3BBE8526F622A5004F04C1 /* Parser.swift */,
-				4F3BBE8726F62434004F04C1 /* NetworkingService.swift */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		4F3BBE9126F68FA3004F04C1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4F3BBE8F26F68DDA004F04C1 /* ViewModel.swift */,
-				4F3BBE9226F68FBE004F04C1 /* Bindable.swift */,
 				4FE4B4E4270125810092AFEE /* CurrentWeatherViewModel.swift */,
 				4FE4B4E6270125D60092AFEE /* ForecastViewModel.swift */,
 			);
@@ -298,12 +275,8 @@
 				4F3BBEAA26FA3C7D004F04C1 /* Forecast.swift in Sources */,
 				4F3BBEA226F78193004F04C1 /* Fonts.swift in Sources */,
 				4FE4B4E92701265D0092AFEE /* Location.swift in Sources */,
-				4F3BBE9326F68FBE004F04C1 /* Bindable.swift in Sources */,
 				4FE4B4EB2701F7B20092AFEE /* WeatherViewController.swift in Sources */,
 				4FE4B4E7270125D60092AFEE /* ForecastViewModel.swift in Sources */,
-				4F3BBE8826F62434004F04C1 /* NetworkingService.swift in Sources */,
-				4F3BBE8626F622A5004F04C1 /* Parser.swift in Sources */,
-				4F3BBE9026F68DDA004F04C1 /* ViewModel.swift in Sources */,
 				4F3BBE6F26F5F6E3004F04C1 /* CurrentWeatherViewController.swift in Sources */,
 				4F3BBE6B26F5F6E3004F04C1 /* AppDelegate.swift in Sources */,
 				4F3BBEA626F7E7CE004F04C1 /* IconNames.swift in Sources */,
@@ -314,7 +287,6 @@
 				4F3BBE9D26F77D5E004F04C1 /* NavigationController.swift in Sources */,
 				4F3BBE8E26F62BB4004F04C1 /* ForecastViewController.swift in Sources */,
 				4F3BBE9626F6A74A004F04C1 /* ProjectStyleLabel.swift in Sources */,
-				4F3BBE8426F6226F004F04C1 /* ImageDownloadOperation.swift in Sources */,
 				4FE4B4E32701216C0092AFEE /* Manager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,7 +4,6 @@ import CoreLocation
 class TabBarController: UITabBarController {
     let currentWeatherViewController = CurrentWeatherViewController()
     let forecastViewController = ForecastViewController()
-    private var viewModel = ViewModel()
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.distanceFilter = 1000
@@ -31,7 +30,6 @@ class TabBarController: UITabBarController {
             if let error = error {
                 dump(error)
             } else if let response = response {
-                // Nofity CurrentWeatherViewController
                 self.currentWeatherViewController.viewModel?.forecast = response
                 self.forecastViewController.viewModel = ForecastViewModel(list: response.list)
             }
@@ -62,7 +60,6 @@ class TabBarController: UITabBarController {
         setupControllers()
         setupActiveNotification()
         currentWeatherViewController.viewModel = CurrentWeatherViewModel()
-
     }
     
     private func setupActiveNotification() {
