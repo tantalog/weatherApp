@@ -18,6 +18,7 @@ class ForecastViewController: WeatherViewController {
             }
         }
     }
+    let defaults = UserDefaults.standard
     
     func updateView() {
         activityIndicatorView.stopAnimating()
@@ -63,10 +64,12 @@ class ForecastViewController: WeatherViewController {
             overrideUserInterfaceStyle = .light
             self.navigationController?.overrideUserInterfaceStyle = .light
             self.tabBarController?.overrideUserInterfaceStyle = .light
+            defaults.set(false, forKey: "darkModeEnabled")
         default:
             overrideUserInterfaceStyle = .dark
             self.navigationController?.overrideUserInterfaceStyle = .dark
             self.tabBarController?.overrideUserInterfaceStyle = .dark
+            defaults.set(true, forKey: "darkModeEnabled")
         }
     }
 }

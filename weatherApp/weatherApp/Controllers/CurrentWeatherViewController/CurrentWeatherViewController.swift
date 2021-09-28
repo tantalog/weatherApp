@@ -24,6 +24,7 @@ class CurrentWeatherViewController: WeatherViewController {
             DispatchQueue.main.async { self.updateView() }
         }
     }
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,10 +119,12 @@ class CurrentWeatherViewController: WeatherViewController {
             overrideUserInterfaceStyle = .light
             self.navigationController?.overrideUserInterfaceStyle = .light
             self.tabBarController?.overrideUserInterfaceStyle = .light
+            defaults.set(false, forKey: "darkModeEnabled")
         default:
             overrideUserInterfaceStyle = .dark
             self.navigationController?.overrideUserInterfaceStyle = .dark
             self.tabBarController?.overrideUserInterfaceStyle = .dark
+            defaults.set(true, forKey: "darkModeEnabled")
         }
     }
     

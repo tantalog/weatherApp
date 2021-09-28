@@ -4,6 +4,7 @@ import CoreLocation
 class TabBarController: UITabBarController {
     let currentWeatherViewController = CurrentWeatherViewController()
     let forecastViewController = ForecastViewController()
+
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.distanceFilter = 1000
@@ -57,9 +58,25 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadMode()
         setupControllers()
         setupActiveNotification()
         currentWeatherViewController.viewModel = CurrentWeatherViewModel()
+    }
+    
+    func loadMode() {
+        let defaults = UserDefaults.standard
+        let darkModeEnabled = defaults.bool(forKey: "darkModeEnabled")
+        if darkModeEnabled {
+            overrideUserInterfaceStyle = .dark
+            self.navigationController?.overrideUserInterfaceStyle = .dark
+            self.tabBarController?.overrideUserInterfaceStyle = .dark
+
+        } else {
+            overrideUserInterfaceStyle = .light
+            self.navigationController?.overrideUserInterfaceStyle = .light
+            self.tabBarController?.overrideUserInterfaceStyle = .light
+        }
     }
     
     private func setupActiveNotification() {

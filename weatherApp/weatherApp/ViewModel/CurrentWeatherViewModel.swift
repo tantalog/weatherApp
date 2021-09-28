@@ -50,7 +50,10 @@ struct CurrentWeatherViewModel {
     }
     
     var windDirection: String {
-        return String(forecast.list.first!.wind.deg)
+        let angle = Double(forecast.list.first!.wind.deg)
+        let direction = angle.direction.description
+        return direction
+    
     }
     
     var icon: UIImage {
